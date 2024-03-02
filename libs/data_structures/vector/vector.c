@@ -62,3 +62,12 @@ int getVectorValue(vector *v, size_t i) {
         return v->data[i];
     }
 }
+
+void pushBack(vector *v, int x) {
+    if (v->capacity == 0) {
+        v->capacity++;
+    } else if (is_full(v)) {
+        reserve(v, v->capacity * 2);
+    }
+    v->data[v->size++] = x;
+}
