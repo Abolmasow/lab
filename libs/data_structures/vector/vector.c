@@ -12,3 +12,4 @@ vector create_vector(size_t capacity) {
         exit(1);
     }
 }
+
