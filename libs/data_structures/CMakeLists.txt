@@ -5,4 +5,6 @@ add_library(data_structures
         ordered_set/ordered_set.h
         unordered_set/unordered_set.c
         unordered_set/unordered_set.h
+        vectorVoid/vectorVoid.c
+        vectorVoid/vectorVoid.h
 )
