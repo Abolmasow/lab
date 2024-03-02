@@ -89,3 +89,12 @@ int* atVector(vector *v, size_t index) {
         return &(v->data[index]);
     }
 }
+
+int* back(vector *v) {
+    if (v->size == 0) {
+        fprintf(stderr, "Error: Vector is empty\n");
+        exit(1);
+    } else {
+        return &(v->data[v->size - 1]);
+    }
+}
