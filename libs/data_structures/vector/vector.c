@@ -33,3 +33,7 @@ void reserve(vector *v, size_t new_capacity) {
 void clear(vector *v) {
     v->size = 0;
 }
+
+void shrinkToFit(vector *v) {
+    v->capacity = v->size;
+}
