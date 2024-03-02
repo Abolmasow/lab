@@ -53,3 +53,12 @@ bool isEmpty(vector *v) {
 bool isFull(vector *v) {
     return v->size == v->capacity;
 }
+
+int getVectorValue(vector *v, size_t i) {
+    if (i >= v->size) {
+        fprintf(stderr, "Index out of bounds\n");
+        exit(1);
+    } else {
+        return v->data[i];
+    }
+}
