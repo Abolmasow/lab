@@ -80,3 +80,12 @@ void popBack(vector *v) {
         v->size--;
     }
 }
+
+int* atVector(vector *v, size_t index) {
+    if (index >= v->size) {
+        fprintf(stderr, "IndexError: a[%d] is not exists\n", index);
+        exit(1);
+    } else {
+        return &(v->data[index]);
+    }
+}
