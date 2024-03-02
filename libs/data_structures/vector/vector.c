@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <malloc.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "../../data_structures/vector/vector.h"
 
 vector create_vector(size_t capacity) {
@@ -43,4 +44,12 @@ void deleteVector(vector *v) {
     v->data = NULL;
     v->size = 0;
     v->capacity = 0;
+}
+
+bool isEmpty(vector *v) {
+    return v->size == 0;
+}
+
+bool isFull(vector *v) {
+    return v->size == v->capacity;
 }
