@@ -27,7 +27,7 @@ void reserve(vector *v, size_t new_capacity) {
             v->size = new_capacity;
         }
     } else {
-        delete_vector(v);
+        deleteVector(v);
     }
 }
 
