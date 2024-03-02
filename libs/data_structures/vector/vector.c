@@ -98,3 +98,12 @@ int* back(vector *v) {
         return &(v->data[v->size - 1]);
     }
 }
+
+int* front(vector *v) {
+    if (v->size == 0) {
+        fprintf(stderr, "Error: Vector is empty\n");
+        exit(1);
+    } else {
+        return &(v->data[0]);
+    }
+}
