@@ -29,3 +29,7 @@ void reserve(vector *v, size_t new_capacity) {
         delete_vector(v);
     }
 }
+
+void clear(vector *v) {
+    v->size = 0;
+}
