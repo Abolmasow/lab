@@ -1,10 +1,10 @@
 add_library(data_structures
         bitset/bitset.c
-        bitset/bitset.h
         ordered_set/ordered_set.c
-        ordered_set/ordered_set.h
         unordered_set/unordered_set.c
-        unordered_set/unordered_set.h
         vectorVoid/vectorVoid.c
-        vectorVoid/vectorVoid.h
+        vector/vector.c
+        matrix/matrix.c
 )
+
+target_link_libraries(data_structures algorithms)

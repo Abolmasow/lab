@@ -16,7 +16,9 @@ add_executable(lab main.c
         libs/data_structures/ordered_set/ordered_set.h
         libs/data_structures/ordered_set/ordered_set.c
         libs/data_structures/vector/vector.c
-        libs/data_structures/vector/vector.h)
+        libs/data_structures/vector/vector.h
+        libs/data_structures/vectorVoid/vectorVoid.c
+        libs/data_structures/vectorVoid/vectorVoid.h)
 add_subdirectory(libs)
 target_link_libraries(lab data_structures)
 target_link_libraries(lab algorithms)
