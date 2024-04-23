@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 void swapMinMaxRows(matrix* m) {
     position max = getMaxValuePos(*m);
@@ -136,4 +137,37 @@ int  getMinInArea(matrix m) {
         }
     }
     return min;
+}
+
+float getDistance(int *a, int n) {
+    long long square_sum = 0;
+    for (int i = 0; i < n; i++) {
+        square_sum += a[i] * a[i];
+    }
+    return sqrt(square_sum);
+}
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix* m, float (*criteria)(int*, int)) {
+    float res_criteria[m->nRows];
+    for (size_t i = 0; i < m->nRows; i++)
+        res_criteria[i] = criteria(m->values[i], m->nCols);
+    int i, j;
+    float key;
+    int* address_key;
+    for (i = 1; i < m->nRows; i++) {
+        key = res_criteria[i];
+        address_key = m->values[i];
+        j = i - 1;
+        while (j >= 0 && res_criteria[j] > key) {
+            res_criteria[j + 1] = res_criteria[j];
+            swapRows(m, j + 1, j);
+            j -= 1;
+        }
+        res_criteria[j + 1] = key;
+        m->values[j + 1] = address_key;
+    }
+}
+
+void sortByDistance(matrix *m) {
+    insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
 }
