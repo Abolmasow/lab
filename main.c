@@ -47,6 +47,7 @@ matrix mulMatrices(matrix m1, matrix m2) {
         }
     return res;
 }
+
 void getSquareOfMatrixIfSymmetric(matrix *m) {
     if (!isSymmetricMatrix(m))
         return;
@@ -56,4 +57,32 @@ void getSquareOfMatrixIfSymmetric(matrix *m) {
     m->values = res.values;
     m->nRows = res.nRows;
     m->nCols = res.nCols;
+}
+
+bool isUnique(long long *a, int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (a[i] == a[j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+long long getSum(int *a, int n) {
+    long long res = 0;
+    for (int i = 0; i < n; i++) {
+        res += a[i];
+    }
+    return res;
+}
+
+void transposeIfMatrixHasNotEqualSumOfRows(matrix *m) {
+    long long sum[m->nRows];
+    for (int i = 0; i < m->nRows; i++) {
+        sum[i] = getSum(m->values[i], m->nCols);
+    }
+    if (isUnique(sum, m->nRows))
+        transposeSquareMatrix(m);
 }
