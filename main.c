@@ -1,5 +1,7 @@
 #include "libs/data_structures/matrix/matrix.h"
 #include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 void swapMinMaxRows(matrix* m) {
     position max = getMaxValuePos(*m);
@@ -29,4 +31,29 @@ int getMin(int *a, int n) {
 
 void sortColsByMinElement(matrix *m) {
     selectionSortColsMatrixByColCriteria(m, getMin);
+}
+
+matrix mulMatrices(matrix m1, matrix m2) {
+    if (m1.nCols != m2.nRows) {
+        fprintf(stderr, "It is not a square matrix");
+        exit(1);
+    }
+    matrix res = getMemMatrix(m1.nRows, m2.nRows);
+    for (int i = 0; i < m1.nRows; i++)
+        for (int j = 0; j < m2.nCols; j++) {
+            res.values[i][j] = 0;
+            for (int k = 0; k < m1.nCols; k++)
+                res.values[i][j] += m1.values[i][k] * m2.values[k][j];
+        }
+    return res;
+}
+void getSquareOfMatrixIfSymmetric(matrix *m) {
+    if (!isSymmetricMatrix(m))
+        return;
+
+    matrix res = mulMatrices(*m, *m);
+    freeMemMatrix(m);
+    m->values = res.values;
+    m->nRows = res.nRows;
+    m->nCols = res.nCols;
 }
