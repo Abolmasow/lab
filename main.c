@@ -86,3 +86,10 @@ void transposeIfMatrixHasNotEqualSumOfRows(matrix *m) {
     if (isUnique(sum, m->nRows))
         transposeSquareMatrix(m);
 }
+
+bool isMutuallyInverseMatrices(matrix m1, matrix m2) {
+    matrix res = mulMatrices(m1, m2);
+    bool is_e_m = isEMatrix(&res);
+    freeMemMatrix(&res);
+    return is_e_m;
+}
