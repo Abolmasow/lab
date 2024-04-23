@@ -294,3 +294,39 @@ void printMatrixWithMaxZeroRows(matrix *ms, int n_matrix) {
         }
     }
 }
+
+// возвращает максимальное абсолютное значение в массиве a размера n
+int getMaxAbsValue(const int *a, int n) {
+    int max_abs = abs(a[0]);
+    for (int i = 1; i < n; i++)
+        if (abs(a[i]) > max_abs)
+            max_abs = abs(a[i]);
+    return max_abs;
+}
+
+// возвращает максимальное абсолютное значение в матрице m
+int getMaxAbsValueInMatrix(matrix m) {
+    int max_abs = getMaxAbsValue(m.values[0], m.nCols);
+    for (int i = 1; i < m.nRows; i++) {
+        int abs_value = getMaxAbsValue(m.values[i], m.nCols);
+        if (abs_value > max_abs)
+            max_abs = abs_value;
+    }
+    return max_abs;
+}
+
+// выводит матрицы, из массива матриц ms размера n_matrix,с минимальной нормой.
+// норма - максимум из абсолютных величин матрицы.
+void printMatrixWithMinStandard(matrix *ms, int n_matrix) {
+    int max_value[n_matrix];
+    int min_value = getMaxAbsValueInMatrix(ms[0]);
+    for (int i = 0; i < n_matrix; i++) {
+        int value = getMaxAbsValueInMatrix(ms[i]);
+        max_value[i] = value;
+        if (value < min_value)
+            min_value = value;
+    }
+    for (int i = 0; i < n_matrix; i++)
+        if (max_value[i] == min_value)
+            outputMatrix(ms + i);
+}
