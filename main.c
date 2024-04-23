@@ -187,7 +187,7 @@ int countEqClassesByRowsSum(matrix m) {
     long long int values[m.nRows];
     for (int i = 0; i < m.nRows; i++)
         values[i] = getSum(m.values[i], m.nCols);
-    qsort(values, m.nRows, sizeof(long long int), cmp_long_long);
+    qsort(values, m.nRows, sizeof(long long int), cmpLongLong);
     int result = countNUnique(values, m.nRows);
     return result;
 }
@@ -260,4 +260,37 @@ int countNonDescendingRowsMatrices(matrix *ms, int n_matrix) {
         if (hasAllNonDescendingRows(ms[i]))
             amount++;
     return amount;
+}
+
+int countValues(const int *a, int n, int value) {
+    int amount = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] == value)
+            amount++;
+    }
+    return amount;
+}
+
+int count_zero_rows(matrix m) {
+    int amount = 0;
+    for (int i = 0; i < m.nRows; i++) {
+        int amount_zero = countValues(m.values[i],m.nCols, 0);
+    }
+}
+
+void printMatrixWithMaxZeroRows(matrix *ms, int n_matrix) {
+    int amount_zero[n_matrix];
+    int max_zero_rows = 0;
+    for (int i = 0; i < n_matrix; i++) {
+        int amount_zero_rows = count_zero_rows(ms[i]);
+        amount_zero[i] = amount_zero_rows;
+        if (amount_zero_rows > max_zero_rows) {
+            max_zero_rows = amount_zero_rows;
+        }
+    }
+    for (int i = 0; i < n_matrix; i++) {
+        if (amount_zero[i] == max_zero_rows) {
+            outputMatrix(ms + i);
+        }
+    }
 }
